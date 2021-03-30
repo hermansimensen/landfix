@@ -46,7 +46,13 @@ public void OnPluginStart()
 	g_cvJumpHeight = CreateConVar("landfix_jumpheight", "58.0", "57 is default. 58 = +1");
 	AutoExecConfig();
 	
-	StoreDoubleToAddressFromFloat(g_CheckJumpButton + view_as<Address>(0x1CB760), (2 * 800 * g_cvJumpHeight.FloatValue));
+	if(!g_bLinux)
+	{
+		StoreDoubleToAddressFromFloat(g_CheckJumpButton + view_as<Address>(0x1CB760), (2 * 800 * g_cvJumpHeight.FloatValue));
+	} else
+	{
+		StoreDoubleToAddressFromFloat(g_CheckJumpButton + view_as<Address>(0x597230), SquareRoot(2 * 800 * g_cvJumpHeight.FloatValue));
+	}
 	
 	g_cvJumpHeight.AddChangeHook(OnJumpHeightChanged);
 	
