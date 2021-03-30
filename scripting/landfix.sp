@@ -18,6 +18,8 @@ Address g_CheckJumpButton;
 ConVar g_cvMinLandHeight;
 ConVar g_cvJumpHeight;
 
+int g_iLastButtons[MAXPLAYERS + 1];
+
 bool g_bLinux;
 
 public Plugin myinfo =
@@ -43,7 +45,7 @@ public void OnPluginStart()
 	}
 	
 	g_cvMinLandHeight = CreateConVar("landfix_minlandheight", "0.5", "");
-	g_cvJumpHeight = CreateConVar("landfix_jumpheight", "58.0", "57 is default. 58 = +1");
+	g_cvJumpHeight = CreateConVar("landfix_jumpheight", "57.25", "57 is default. 58 = +1");
 	AutoExecConfig();
 	
 	if(!g_bLinux)
@@ -127,6 +129,18 @@ void LoadDHooks()
 	delete CreateInterface;
 	delete gamedata;
 }
+
+public Action OnPlayerRunCmd(int client, int &buttons, int &impulse, float vel[3], float angles[3], int &weapon, int &subtype, int &cmdnum, int &tickcount, int &seed, int mouse[2])
+{
+	if(GetEntityFlags(client) & FL_ONGROUND && buttons & IN_JUMP && !(g_iLastButtons[client] & IN_JUMP) && !(g_iLastButtons[client] & IN_DUCK))
+	{
+		buttons &= ~IN_DUCK;
+	}
+	
+	g_iLastButtons[client] = buttons;
+}
+
+
 
 public MRESReturn DHook_CategorizePosition()
 {
