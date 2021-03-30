@@ -70,7 +70,7 @@ public void OnJumpHeightChanged(ConVar convar, const char[] oldValue, const char
 
 void LoadDHooks()
 {
-	GameData gamedata = new GameData("landingfix.games");
+	GameData gamedata = new GameData("landfix.games");
 	//Address addr = gamedata.GetAddress("CategorizePosition");
 
 	if(gamedata == null)
