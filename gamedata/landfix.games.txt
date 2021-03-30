@@ -1,0 +1,87 @@
+"Games"
+{
+	"#default"
+	{
+		"Keys"
+		{
+			"IGameMovement"		"GameMovement001"
+
+			"IServerGameEnts"	"ServerGameEnts001"
+		}
+
+		"Signatures"
+		{
+			"CreateInterface"
+			{
+				"library"		"server"
+				"windows"		"@CreateInterface"
+				"linux"			"@CreateInterface"
+			}
+		}
+
+		"Offsets"
+		{
+			"CategorizePosition"
+			{
+				"windows"		"41"
+				"linux"			"42"
+			}
+		}
+	}
+    "cstrike"
+    {
+       "Addresses"
+		{
+			"CategorizePosition"
+			{
+				"windows"
+				{
+					"signature" "CGameMovement::CategorizePosition"
+				}
+				
+				"linux"
+				{
+					"signature" "CGameMovement::CategorizePosition"
+				}
+			}
+			
+			"CheckJumpButton"
+			{
+				"windows"
+				{
+					"signature" "CCSGameMovement::CheckJumpButton"
+				}
+				"linux"
+				{
+					"signature" "CCSGameMovement::CheckJumpButton"
+				}
+			}
+		}
+		
+		"Signatures"
+		{
+			"CGameMovement::CategorizePosition"
+			{
+				"library"	"server"
+				"windows"	"\x55\x8B\xEC\x81\xEC\x8C\x00\x00\x00\x57\x8B\xF9\x8B\x47\x04"
+				"linux"		"@_ZN13CGameMovement18CategorizePositionEv"
+			}
+			
+			"CCSGameMovement::CheckJumpButton"
+			{
+				"library"	"server"
+				"windows"	"\x55\x8B\xEC\x83\xEC\x0C\x57\x8B\xF9\x8B\x8F\xA0\x0E\x00\x00"
+				"linux"		"@_ZN15CCSGameMovement15CheckJumpButtonEv"
+			}
+			
+		}
+		"Offsets"
+		{
+			"OS"
+			{
+				"windows"	"1"
+				"linux"		"2"
+			}
+		}
+    }
+}
