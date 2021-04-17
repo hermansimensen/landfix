@@ -45,7 +45,7 @@ public void OnPluginStart()
 	}
 	
 	g_cvMinLandHeight = CreateConVar("landfix_minlandheight", "0.5", "");
-	g_cvJumpHeight = CreateConVar("landfix_jumpheight", "57.25", "57 is default. 58 = +1");
+	g_cvJumpHeight = CreateConVar("landfix_jumpheight", "58.495", "57 is default. 58 = +1");
 	AutoExecConfig();
 	
 	if(!g_bLinux)
